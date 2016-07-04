@@ -27,6 +27,7 @@ Capybara.configure do |config|
   config.default_driver = :webkit
   config.run_server = false
   config.ignore_hidden_elements = true
+  config.app_host = 'http://localhost:3000'
 end
 
 Dir.glob("spec/steps/**/*steps.rb") { |f| load f, true }
