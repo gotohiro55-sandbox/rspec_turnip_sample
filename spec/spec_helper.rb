@@ -17,15 +17,19 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-Dir.glob('spec/**/*steps.rb') { |f| load f, true }
-
 require 'capybara/dsl'
 require 'capybara/rspec'
+require 'capybara/webkit'
 require 'turnip'
 require 'turnip/capybara'
 
-Capybara.ignore_hidden_elements = true
-Capybara.run_server = false
+Capybara.configure do |config|
+  config.default_driver = :webkit
+  config.run_server = false
+  config.ignore_hidden_elements = true
+end
+
+Dir.glob("spec/steps/**/*steps.rb") { |f| load f, true }
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
